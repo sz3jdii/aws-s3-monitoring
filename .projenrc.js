@@ -4,7 +4,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   defaultReleaseBranch: 'main',
   name: 'aws-s3-monitoring',
   packageName: 'aws-s3-monitoring',
-  deps: ['@aws-cdk/aws-s3'],
+  deps: [],
   repository: 'https://github.com/sz3jdii/aws-s3-monitoring.git',
 
 });

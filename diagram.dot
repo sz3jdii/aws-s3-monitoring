@@ -1,0 +1,74 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "aws-s3-monitoring" {
+    subgraph "cluster-SubGraph.aws-s3-monitoring" {
+      graph [
+        label = "aws-s3-monitoring",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#e4e4e4",
+      ];
+      "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
+        label = " aws s3 monitoring\nkms key",
+        fontsize = 12,
+        image = "C:\Users\sz3jdii\AppData\Roaming\npm\node_modules\cdk-dia\icons\aws\Service\Arch_Security-Identity-Compliance\64\Arch_AWS-Key-Management-Services_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.4819999999999998,
+      ];
+      "aws-s3-monitoring/aws-s3-monitoring-buckets/documents-bucket" [
+        label = " documents-bucket",
+        fontsize = 12,
+        image = "C:\Users\sz3jdii\AppData\Roaming\npm\node_modules\cdk-dia\icons\aws\Service\Arch_Storage\64\Arch_Amazon-S3-Standard_64@5x.png",
+        imagescale = "true",
+        imagepos = "tc",
+        penwidth = "0",
+        shape = "node",
+        fixedsize = "true",
+        labelloc = "b",
+        width = 2,
+        height = 2.266,
+      ];
+    }
+  }
+  "aws-s3-monitoring/aws-s3-monitoring-buckets/documents-bucket" -> "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
+    dir = "both",
+  ];
+}
