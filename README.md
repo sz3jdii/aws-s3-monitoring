@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sz3jdii/aws-s3-monitoring">
-    <img src="https://ichi.pro/assets/images/max/724/1*bnmfpzoIBkPe3PfuunfIZQ.png" alt="Logo" width="340" height="143">
+    <img src="images/cdk-logo.png" alt="Logo" width="340" height="143">
   </a>
 
 <h3 align="center">AWS S3 Monitoring</h3>
