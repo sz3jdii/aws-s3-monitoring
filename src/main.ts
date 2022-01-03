@@ -12,10 +12,11 @@ export class AWSS3MonitoringStack extends Stack {
     const { masterKey } = new AuthKms(this, id);
     // S3
     const { bucket } = new AppBuckets(this, id, masterKey);
-    // MD5
-    new AppBucketConverter(this, id, bucket);
     // SQS
-    new AppQueue(this, id, masterKey);
+    const { queue } = new AppQueue(this, id, masterKey);
+    // MD5 converter
+    new AppBucketConverter(this, id, bucket, queue);
+
   }
 }
 

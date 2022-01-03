@@ -1,7 +1,11 @@
 async function main(event) {
-  console.log(event)
+  const encryptedKeys = [];
+  for (const record of event.Records){
+    const md5 = record.s3.object.eTag;
+    encryptedKeys.push(md5);
+  }
   return {
-    body: JSON.stringify({message: 'success'}),
+    body: JSON.stringify({message: 'success', encryptedKeys: encryptedKeys}),
     statusCode: 201,
   };
 }
