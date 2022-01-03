@@ -1,6 +1,8 @@
 import { App, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { AppBucketConverter } from './app/app.bucket.converter';
 import { AppBuckets } from './app/app.buckets';
+import { AppQueue } from './app/app.queue';
 import { AuthKms } from './auth/auth.kms';
 
 export class AWSS3MonitoringStack extends Stack {
@@ -9,7 +11,11 @@ export class AWSS3MonitoringStack extends Stack {
     // KMS
     const { masterKey } = new AuthKms(this, id);
     // S3
-    new AppBuckets(this, id, masterKey);
+    const { bucket } = new AppBuckets(this, id, masterKey);
+    // MD5
+    new AppBucketConverter(this, id, bucket);
+    // SQS
+    new AppQueue(this, id, masterKey);
   }
 }
 
