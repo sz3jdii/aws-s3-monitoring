@@ -66,10 +66,10 @@ digraph "Diagram" {
         width = 2,
         height = 2.266,
       ];
-      "aws-s3-monitoring/aws-s3-monitoring-sqs/aws-s3-monitoring-sqs" [
-        label = "\naws-s3-monitoring-sqs",
+      "aws-s3-monitoring/aws-s3-monitoring-sns/S3-Upload" [
+        label = " S3-Upload",
         fontsize = 12,
-        image = "C:\Users\sz3jdii\AppData\Roaming\npm\node_modules\cdk-dia\icons\aws\Service\Arch_App-Integration\Arch_64\Arch_AWS-Simple-Queue-Service_64@5x.png",
+        image = "C:\Users\sz3jdii\AppData\Roaming\npm\node_modules\cdk-dia\icons\aws\Service\Arch_App-Integration\Arch_64\Arch_AWS-Simple-Notification-Service_64@5x.png",
         imagescale = "true",
         imagepos = "tc",
         penwidth = "0",
@@ -77,7 +77,7 @@ digraph "Diagram" {
         fixedsize = "true",
         labelloc = "b",
         width = 2,
-        height = 2.4819999999999998,
+        height = 2.266,
       ];
       "aws-s3-monitoring/aws-s3-monitoring-bucket-converter/md5-converter-lambda-function" [
         label = " md5 converter lambda\nfunction",
@@ -105,15 +105,63 @@ digraph "Diagram" {
         width = 1.2,
         height = 1.466,
       ];
+      subgraph "cluster-SubGraph.aws-s3-monitoring-sqs" {
+        graph [
+          label = "aws-s3-monitoring-sqs",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "aws-s3-monitoring/aws-s3-monitoring-sqs/aws-s3-monitoring-sqs" [
+          label = "\naws-s3-monitoring-sqs",
+          fontsize = 12,
+          image = "C:\Users\sz3jdii\AppData\Roaming\npm\node_modules\cdk-dia\icons\aws\Service\Arch_App-Integration\Arch_64\Arch_AWS-Simple-Queue-Service_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.4819999999999998,
+        ];
+        "aws-s3-monitoring/aws-s3-monitoring-sqs/sns-send-lambda-function" [
+          label = " sns send lambda\nfunction",
+          fontsize = 12,
+          image = "C:\Users\sz3jdii\AppData\Roaming\npm\node_modules\cdk-dia\icons\aws\Service\Arch_Compute\64\Arch_AWS-Lambda_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 2,
+          height = 2.4819999999999998,
+        ];
+      }
     }
   }
+  "aws-s3-monitoring/aws-s3-monitoring-sqs/aws-s3-monitoring-sqs" -> "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
+    dir = "both",
+  ];
+  "aws-s3-monitoring/aws-s3-monitoring-sqs/sns-send-lambda-function" -> "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
+    dir = "both",
+  ];
+  "aws-s3-monitoring/aws-s3-monitoring-sqs/sns-send-lambda-function" -> "aws-s3-monitoring/aws-s3-monitoring-sns/S3-Upload" [
+    dir = "both",
+  ];
+  "aws-s3-monitoring/aws-s3-monitoring-sqs/sns-send-lambda-function" -> "aws-s3-monitoring/aws-s3-monitoring-sqs/aws-s3-monitoring-sqs" [
+    dir = "both",
+  ];
   "aws-s3-monitoring/aws-s3-monitoring-buckets/documents-bucket" -> "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
     dir = "both",
   ];
   "aws-s3-monitoring/aws-s3-monitoring-buckets/documents-bucket" -> "aws-s3-monitoring/aws-s3-monitoring-bucket-converter/md5-converter-lambda-function" [
-    dir = "both",
-  ];
-  "aws-s3-monitoring/aws-s3-monitoring-sqs/aws-s3-monitoring-sqs" -> "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
     dir = "both",
   ];
   "aws-s3-monitoring/aws-s3-monitoring-bucket-converter/md5-converter-lambda-function" -> "aws-s3-monitoring/aws-s3-monitoring-kms/aws-s3-monitoring-kms-key" [
