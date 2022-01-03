@@ -6,6 +6,10 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   packageName: 'aws-s3-monitoring',
   deps: [],
   repository: 'https://github.com/sz3jdii/aws-s3-monitoring.git',
-
+  context: {
+    '@aws-cdk/core:newStyleStackSynthesis': false,
+  },
 });
+
+project.addGitIgnore('.aws-sam');
 project.synth();
